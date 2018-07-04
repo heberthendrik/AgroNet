@@ -335,7 +335,8 @@ p.drop-caps.colored.secondary:first-child:first-letter {
 }
 /* Page Header */
 .page-header h2 {
-	border-bottom-color: #0088cc;
+/* 	border-bottom-color: #0088cc; */
+	border-bottom-color: #a8b533;
 }
 
 .page-header .sidebar-right-toggle:hover {
