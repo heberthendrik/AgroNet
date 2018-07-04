@@ -24,4 +24,5 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="browser" spec="^5.0.3" />
+    <icon src="res/universal_icon.png" />
 </widget>
