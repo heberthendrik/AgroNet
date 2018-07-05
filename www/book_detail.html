@@ -173,13 +173,13 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-									<li class="nav-parent">
+									<li class="nav-active">
 										<a href="dashboard.html">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard</span>
 										</a>
 									</li>
-									<li class="nav-active">
+									<li class="nav-parent">
 										<a href="katalog.html">
 											<i class="fa fa-book" aria-hidden="true"></i>
 											<span>Katalog</span>
@@ -242,7 +242,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Katalog</h2>
+						<h2>Judul Buku</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -256,71 +256,54 @@
 						</div>
 					</header>
 	
-					<!-- CONTENT -->
-					<div class="container row">
-						<input type="date" class="form-control" value="2018-07-04" style="height:50px;margin-bottom:10px;" />
-					</div>
+					<!-- CONTENT -->	
+					<div class="row">
+						<div class="col-lg-12">
+							<section class="panel">
+								<div class="panel-body">
+									<form class="form-horizontal form-bordered" method="get">
 									
-					<div class="row">
-						<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/contoh1.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+										<div class="row">
+											<div class="col-sm-4 col-xs-4">
+												<img src="media_library/contoh1.jpg" class="img-responsive"/>
+											</div>
+											<div class="col-sm-8 col-xs-8">
+												<strong>Penulis</strong>: Test<br/>
+												<strong>Penerbit</strong>: Test<br/>
+												<strong>Ukuran</strong>: Test<br/>
+												<strong>Jumlah Halaman</strong>: Test
+											</div>
+										</div>
+										
+									</form>
 								</div>
-								<div style="padding:10px;background:#fff;">Menjadi Pribadi Pembelajar</div>
-								<div class="text-right" style="background:#a8b533;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 74.800</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/contoh2.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
-								</div>
-								<div style="padding:10px;background:#fff;">Kenapa Kita Rela Tertinggal?</div>
-								<div class="text-right" style="background:#a8b533;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 54.800</div>
-							</div>
+							</section>
+					
 						</div>
 					</div>
+					
+					<!-- CONTENT -->	
 					<div class="row">
-						<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/contoh3.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+						<div class="col-lg-12">
+							<section class="panel">
+								<div class="panel-body">
+									<form class="form-horizontal form-bordered" method="get">
+									
+										<div class="row">
+											<div class="col-sm-12 col-xs-12">
+												<div style="text-transform:uppercase;margin-bottom:10px;font-weight:bold;" class="text-center">Jumlah Pesan</div>
+												<div><input type="number" min="1" value="1" class="form-control" /></div>
+												<div style="margin-top:20px;"><button class="btn btn-primary" style="width:100%;">Pesan</button></div>
+											</div>
+										</div>
+									
+									</form>
 								</div>
-								<div style="padding:10px;background:#fff;">Menjadi Pribadi Pembelajar</div>
-								<div class="text-right" style="background:#a8b533;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 74.800</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/contoh4.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
-								</div>
-								<div style="padding:10px;background:#fff;">Kenapa Kita Rela Tertinggal?</div>
-								<div class="text-right" style="background:#a8b533;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 54.800</div>
-							</div>
+							</section>
+					
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/contoh5.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
-								</div>
-								<div style="padding:10px;background:#fff;">Menjadi Pribadi Pembelajar</div>
-								<div class="text-right" style="background:#a8b533;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 74.800</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/contoh6.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
-								</div>
-								<div style="padding:10px;background:#fff;">Kenapa Kita Rela Tertinggal?</div>
-								<div class="text-right" style="background:#a8b533;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 54.800</div>
-							</div>
-						</div>
-					</div>
+					
 					<!-- END CONTENT -->
 
 				</section>
