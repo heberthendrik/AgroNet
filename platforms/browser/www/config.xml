@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+<widget id="io.agromediagroup.agronet" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>AgroNet</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Aplikasi mobile Kelompok Agromedia yang diperuntukan untuk para relasi Agromedia Group dalam berkomunikasi dengan sales kami.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="hebert.hendrik@gmail" href="http://heberthendrik.com/bio/">
+        Hebert Hendrik
     </author>
     <content src="index.html" />
     <access origin="*" />

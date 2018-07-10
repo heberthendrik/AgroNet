@@ -1,11 +1,11 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "HelloCordova",
-  "short_name": "HelloCordova",
-  "version": "io.cordova.hellocordova",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "author": "Apache Cordova Team",
+  "name": "AgroNet",
+  "short_name": "AgroNet",
+  "version": "io.agromediagroup.agronet",
+  "description": "Aplikasi mobile Kelompok Agromedia yang diperuntukan untuk para relasi Agromedia Group dalam berkomunikasi dengan sales kami.",
+  "author": "Hebert Hendrik",
   "icons": [],
   "start_url": "index.html"
 }
