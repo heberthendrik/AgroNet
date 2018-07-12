@@ -215,7 +215,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Judul Buku</h2>
+						<h2 id="load_toptitle">Judul Buku</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -236,15 +236,15 @@
 								<div class="panel-body">
 									
 										<div class="row">
-											<div class="col-sm-4 col-xs-4">
-												<img src="media_library/contoh1.jpg" class="img-responsive"/>
+											<div class="col-sm-4 col-xs-4" id="load_gambar">
+												Loading Gambar...
 											</div>
 											<div class="col-sm-8 col-xs-8 text-left">
-												<h3 style="margin-top:0px;">Contoh Judul Buku</h3>
-												<strong>Penulis</strong>: Test<br/>
-												<strong>Penerbit</strong>: Test<br/>
-												<strong>Ukuran</strong>: Test<br/>
-												<strong>Jumlah Halaman</strong>: Test
+												<h3 style="margin-top:0px;" id="load_judul">Loading...</h3>
+												<strong>Penulis</strong>: <span id="load_penulis">Loading...</span><br/>
+												<strong>Penerbit</strong>: <span id="load_penerbit">Loading...</span><br/>
+												<strong>Ukuran</strong>: <span id="load_ukuran">Loading...</span><br/>
+												<strong>Jumlah Halaman</strong>: <span id="load_halaman">Loading...</span>
 											</div>
 										</div>
 										
@@ -258,6 +258,7 @@
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12">
 											<h3>Sinopsis</h3>
+<!-- 											<div id="load_sinopsis">Loading</div> -->
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 										</div>
 									</div>
@@ -342,5 +343,67 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        	
+        	GetBookDetail();
+			function GetBookDetail(){
+	        	
+	        	var parseQueryString = function() {
+
+				    var str = window.location.search;
+				    var objURL = {};
+				
+				    str.replace(
+				        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+				        function( $0, $1, $2, $3 ){
+				            objURL[ $1 ] = $3;
+				        }
+				    );
+				    return objURL;
+				};
+				
+				var params = parseQueryString();
+				var isbn = params["isbn"];
+				//alert(isbn);
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						var function_result = jsonData.function_result;
+						
+						var title = jsonData.title;
+						var author = jsonData.author;
+						var publisher = jsonData.publisher;
+						var size = jsonData.size;
+						var pagecount = jsonData.pagecount;
+						var cover = jsonData.cover;
+		
+						if( function_result == 0 ){
+							alert('Loading data gagal. Silahkan hubungi administrator kami.');
+						} else if( function_result == 1 ){
+							document.getElementById('load_gambar').innerHTML = cover;
+							document.getElementById('load_judul').innerHTML = title;
+							document.getElementById('load_toptitle').innerHTML = title;
+							document.getElementById('load_penulis').innerHTML = author;
+							document.getElementById('load_penerbit').innerHTML = publisher;
+							document.getElementById('load_ukuran').innerHTML = size;
+							document.getElementById('load_halaman').innerHTML = pagecount;
+						}
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/book/MobileAPI.php?action=DisplayBookDetailByISBN", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("isbn="+isbn);
+	        	
+        	}
+        	
+        	
+        
+        </script>
+        
+        
 	</body>
 </html>

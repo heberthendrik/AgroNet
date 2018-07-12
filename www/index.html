@@ -157,12 +157,14 @@
 							var jsonData = JSON.parse(this.responseText);
 							var function_result = jsonData.function_result;
 							var customer_id = jsonData.customer_id;
+							var distributor_id = jsonData.distributor_id;
 			
 							if( function_result == 0 ){
 								alert('Login gagal. pastikan username dan password Anda, benar.');
 							} else if( function_result == 1 ){
 								localStorage.clear();
 								localStorage.setItem("agronet_userid",customer_id);
+								localStorage.setItem("agronet_distributorid",distributor_id);
 								window.location="katalog.html";
 							}
 						}
