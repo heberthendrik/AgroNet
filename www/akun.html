@@ -243,19 +243,19 @@
 													<table class="table table-striped mb-none">
 														<tr>
 															<td>Nama</td>
-															<td>heberthendrik</td>
+															<td><span id="load_nama">Loading...</span></td>
 														</tr>
 														<tr>
 															<td>Lokasi</td>
-															<td>alamat</td>
+															<td><span id="load_lokasi">Loading...</span></td>
 														</tr>
 														<tr>
 															<td>No Telp</td>
-															<td>021234</td>
+															<td><span id="load_phone">Loading...</span>
 														</tr>
 														<tr>
 															<td>Outstanding</td>
-															<td>0</td>
+															<td><span id="load_oustanding">Loading...</span></td>
 														</tr>
 													</table>
 												</div>
@@ -283,11 +283,11 @@
 													<table class="table table-striped mb-none">
 														<tr>
 															<td>Nama</td>
-															<td>randy</td>
+															<td><span id="load_salesname">Loading...</span></td>
 														</tr>
 														<tr>
 															<td>No HP</td>
-															<td>08123456</td>
+															<td><span id="load_salesphone">Loading...</span></td>
 														</tr>
 													</table>
 												</div>
@@ -303,7 +303,7 @@
 					
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
-							<a href="ubah_password.html"><button class="btn btn-primary" style="width:100%;height:40px;">UBAH PASSWORD</button></a>
+							<a href="ubah_password.html"><button class="btn btn-primary" style="width:100%;height:40px;background:#0f994e!important;">UBAH PASSWORD</button></a>
 						</div>
 					</div>
 					
@@ -365,5 +365,36 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        
+        	FetchUserInfo();
+        	function FetchUserInfo(){
+        	
+        		customer_id = localStorage.getItem('agronet_userid');
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+
+						display_content = jsonData.display_content;
+						document.getElementById('load_nama').innerHTML = jsonData.nama;
+						document.getElementById('load_lokasi').innerHTML = jsonData.lokasi;
+						document.getElementById('load_phone').innerHTML = jsonData.tlp;
+						document.getElementById('load_oustanding').innerHTML = jsonData.outstanding;
+						document.getElementById('load_salesname').innerHTML = jsonData.sales_name;
+						document.getElementById('load_salesphone').innerHTML = jsonData.sales_phone;
+		
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=RetrieveAccountInfo", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("customer_id="+customer_id);
+	        	
+        	}
+        </script>
+        
 	</body>
 </html>

@@ -235,26 +235,25 @@
 							<div class="form-group mb-lg">
 								<label>Jumlah Koli</label>
 								<div class="input-group input-group-icon">
-									<input name="username" type="number" class="form-control input-lg" />
+									<input id="input_qty" name="username" type="number" class="form-control input-lg" />
 								</div>
 							</div>
 							<div class="form-group mb-lg">
 								<label>Tanggal Pengambilan</label>
 								<div class="input-group input-group-icon">
-									<input name="username" type="date" class="form-control input-lg" />
+									<input id="input_tgl" name="username" type="date" class="form-control input-lg" />
 								</div>
 							</div>
 							<div class="form-group mb-lg">
 								<label>Catatan</label>
 								<div class="input-group input-group-icon">
-									<textarea class="form-control" style="width:100%;height:150px;"></textarea>
+									<textarea id="input_catatan" class="form-control" style="width:100%;height:150px;"></textarea>
 								</div>
 							</div>
 
 							<div class="row" style="margin-bottom:20px;">
 								<div class="col-sm-4 text-right">
-									<button type="button" class="btn btn-primary hidden-xs" style="background:#0f994e!important;" onclick="window.location='result_retur.html'">Lanjut</button>
-									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;" onclick="window.location='result_retur.html'">Lanjut</button>
+									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;" onclick="SubmitRetur();">Lanjut</button>
 								</div>
 							</div>
 
@@ -319,5 +318,54 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        	function SubmitRetur(){
+	        	
+	        	customer_id = localStorage.getItem('agronet_userid');
+	        	qty = document.getElementById('input_qty').value;
+	        	catatan = document.getElementById('input_catatan').value;
+	        	
+	        	var date = document.getElementById('input_tgl').value;
+	        	
+	        	if( date == '' ){
+		        	var today = new Date();
+					var dd = today.getDate();
+					var ddchecker = dd.toString();
+					if( ddchecker.length == 1 ){
+						dd = dd.toString();
+						dd = "0"+dd;
+					}
+					
+					var mm = today.getMonth()+1; //January is 0!
+					var mmchecker = mm.toString();
+					if( mmchecker.length == 1 ){
+						mm = mm.toString();
+						mm = "0"+mm;
+					}
+					
+					var yyyy = today.getFullYear();
+					
+					var finaldate = yyyy+"-"+mm+"-"+dd;
+					document.getElementById('input_tgl').value = finaldate;
+	        	} else {
+		        	var finaldate = date;
+	        	}
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						window.location='result_retur.html';
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/return/MobileAPI.php?action=SubmitRetur", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("customer_id="+customer_id+"&jumlahkoli="+qty+"&tanggalpengembalian="+finaldate+"&catatan="+catatan);
+	        	
+        	}
+        </script>
+        
 	</body>
 </html>

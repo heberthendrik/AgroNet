@@ -215,7 +215,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Kiriman ID# [123]</h2>
+						<h2>Kiriman ID# [<span id="idshipping_top">Loading...</span>]</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -242,13 +242,13 @@
 												<strong>Estimasi Sampai</strong><br/>
 											</div>
 											<div class="col-sm-6 col-xs-6 text-left">
-												: #123<br/>
-												: 2018-01-01<br/>
-												: 2018-01-01
+												: #<span id="load_idshipping">Loading...</span><br/>
+												: <span id="load_tanggalkirim">Loading...</span><br/>
+												: <span id="load_tanggaleta">Loading...</span>
 											</div>
 											<div class="col-sm-12 col-xs-12" style="padding-top:15px;">
 												<strong>Catatan:</strong><br/>
-												<p>asdfasdfasdf</p>
+												<p><span id="load_catatanadmin">Loading...</span></p>
 											</div>
 										</div>
 										
@@ -262,8 +262,8 @@
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12">
 											<h3>Penerimaan</h3>
-											<textarea style="width:100%;height:150px;" class="form-control"></textarea>
-											<div><button class="btn btn-primary" style="width:100%;background:#0f994e!important;border-radius:0;border-radius:5px;margin-top:15px;">Terima</button></div>
+											<textarea id="input_catatan" style="width:100%;height:150px;" class="form-control"></textarea>
+											<div><button onclick="SubmitTerima();" class="btn btn-primary" style="width:100%;background:#0f994e!important;border-radius:0;border-radius:5px;margin-top:15px;">Terima</button></div>
 										</div>
 									</div>
 										
@@ -332,5 +332,87 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        
+        	DisplayDetail()
+        	function DisplayDetail(){
+	        	
+	        	var parseQueryString = function() {
+
+				    var str = window.location.search;
+				    var objURL = {};
+				
+				    str.replace(
+				        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+				        function( $0, $1, $2, $3 ){
+				            objURL[ $1 ] = $3;
+				        }
+				    );
+				    return objURL;
+				};
+				
+				var params = parseQueryString();
+				var shipping_id = params["sid"];
+				
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						//var function_result = jsonData.function_result;
+		
+						document.getElementById('idshipping_top').innerHTML = jsonData.shipping_id;
+						document.getElementById('load_idshipping').innerHTML = jsonData.shipping_id;
+						document.getElementById('load_tanggalkirim').innerHTML = jsonData.tanggal_kirim;
+						document.getElementById('load_tanggaleta').innerHTML = jsonData.tanggal_terima;
+						document.getElementById('load_catatanadmin').innerHTML = jsonData.notes;
+						
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/shipping/MobileAPI.php?action=DisplayHistoryKirimanDetail", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("shipping_id="+shipping_id);
+	        	
+        	}
+        	
+        	function SubmitTerima(){
+	        	
+	        	var parseQueryString = function() {
+
+				    var str = window.location.search;
+				    var objURL = {};
+				
+				    str.replace(
+				        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+				        function( $0, $1, $2, $3 ){
+				            objURL[ $1 ] = $3;
+				        }
+				    );
+				    return objURL;
+				};
+				
+				var params = parseQueryString();
+				var shipping_id = params["sid"];
+	        	catatan_customer = document.getElementById('input_catatan').value;
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						//var function_result = jsonData.function_result;
+						alert('Data pengiriman berhasil terkirim.');
+						window.location='kiriman.html';
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/shipping/MobileAPI.php?action=ConfirmReceive", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("shipping_id="+shipping_id+"&notes="+catatan_customer);
+	        	
+        	}
+        
+        </script>
+        
 	</body>
 </html>

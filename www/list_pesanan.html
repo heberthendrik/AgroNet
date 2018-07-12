@@ -230,7 +230,8 @@
 					</header>
 	
 					<!-- CONTENT -->
-					<div class="panel-body" style="background:transparent;">	
+					<div class="panel-body" style="background:transparent;" id="load_listpesanan">	
+						<!--
 						<div class="row" style="background:#fff;padding-bottom:10px;margin-bottom:10px;padding-bottom:25px;border-top-right-radius:15px;padding-top:0px;border-bottom-left-radius:15px;">
 							<div class="col-sm-12 col-xs-12" style="margin-bottom:10px;background:#0f994e;color:#fff;padding-top:10px;padding-bottom:10px;border-top-right-radius:15px;font-weight:bold;">
 								ID# [001]
@@ -264,6 +265,7 @@
 							</div>
 							<div class="col-sm-12 col-xs-12" style="margin-top:10px;text-align:right;"><a href="history_pesanan_detail.html">Lihat Detail</a></div>
 						</div>
+						-->
 					</div>
 
 					<!-- END CONTENT -->
@@ -324,5 +326,34 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        
+        	LoadPesanan();
+        	function LoadPesanan(){
+	        	
+	        	customer_id = localStorage.getItem('agronet_userid');
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						var function_result = jsonData.function_result;
+		
+						display_content = jsonData.display_content;
+							
+						document.getElementById('load_listpesanan').innerHTML = display_content;	
+						
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/order/MobileAPI.php?action=DisplayAllPesanan", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("customer_id="+customer_id);
+	        	
+        	}
+        
+        </script>
+        
 	</body>
 </html>
