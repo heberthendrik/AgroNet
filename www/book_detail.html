@@ -267,15 +267,15 @@
 								</div>
 							</section>
 							
-							<section class="panel">
+							<section class="panel" id="form_pesan">
 								<div class="panel-body" style="background:transparent;">
 
 									<div class="row">
 										<div class="col-sm-6 col-xs-6" style="padding-left:0px;padding-right:0px;">
-											<div><input type="number" min="1" class="form-control" placeholder="Jumlah Pesan" style="border-radius:0;border-top-left-radius:5px;border-bottom-left-radius:5px;" /></div>
+											<div><input id="input_jumlahpesan" type="number" min="1" class="form-control" placeholder="Jumlah Pesan" style="border-radius:0;border-top-left-radius:5px;border-bottom-left-radius:5px;" /></div>
 										</div>
 										<div class="col-sm-6 col-xs-6" style="padding-left:0px;padding-right:0px;">
-											<div><button class="btn btn-primary" style="width:100%;background:#0f994e!important;border-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;">Pesan</button></div>
+											<div><button onclick="AddToCart()" class="btn btn-primary" style="width:100%;background:#0f994e!important;border-radius:0;border-top-right-radius:5px;border-bottom-right-radius:5px;">Pesan</button></div>
 										</div>
 									</div>
 									
@@ -365,7 +365,6 @@
 				
 				var params = parseQueryString();
 				var isbn = params["isbn"];
-				//alert(isbn);
 	        	
 	        	var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
@@ -397,6 +396,53 @@
 				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/book/MobileAPI.php?action=DisplayBookDetailByISBN", true);
 				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				xhttp.send("isbn="+isbn);
+				
+				var current_stored_cart_isbn = localStorage.getItem('agronet_cart_isbn');
+				if( current_stored_cart_isbn.includes(isbn) ){
+					document.getElementById('form_pesan').style.display = 'none';
+				}
+	        	
+        	}
+        	
+        	
+        	function AddToCart(){
+	        	
+	        	var parseQueryString = function() {
+
+				    var str = window.location.search;
+				    var objURL = {};
+				
+				    str.replace(
+				        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+				        function( $0, $1, $2, $3 ){
+				            objURL[ $1 ] = $3;
+				        }
+				    );
+				    return objURL;
+				};
+				
+				var params = parseQueryString();
+				var isbn = params["isbn"];
+				var qtypesan = document.getElementById('input_jumlahpesan').value;
+				
+				if( qtypesan < 1 ){
+					alert('Jumlah pesanan tidak boleh kosong. Minimal jumlah pesanan adalah 1.');
+				} else {
+				
+					var existing_cart_isbn = localStorage.getItem("agronet_cart_isbn");
+					var new_existing_cart_isbn = existing_cart_isbn.concat("|"+isbn);
+					localStorage.setItem("agronet_cart_isbn",new_existing_cart_isbn);
+					
+					var existing_cart_qty = localStorage.getItem("agronet_cart_qty");
+					var new_existing_cart_qty = existing_cart_qty.concat("|"+qtypesan);
+					localStorage.setItem("agronet_cart_qty",new_existing_cart_qty);
+					
+					document.getElementById('form_pesan').style.display = 'none';
+					alert('Buku telah ditambahkan dalam keranjang belanja Anda.');
+					
+					
+				}
+				
 	        	
         	}
         	

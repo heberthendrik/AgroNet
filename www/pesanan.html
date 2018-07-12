@@ -229,49 +229,55 @@
 						</div>
 					</header>
 	
-					<!-- CONTENT -->	
-					<div class="row" style="background:#fff;padding-top:10px;padding-bottom:10px;margin-bottom:2px;padding-top:25px;padding-bottom:25px;">
-						<div class="col-sm-4 col-xs-4">
-							<img src="media_library/mengalahkan-hati.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+					<!-- CONTENT -->
+					<div id="list_keranjang_belanja">
+						Loading data keranjang...
+						<!--
+						<div class="row" style="background:#fff;padding-top:10px;padding-bottom:10px;margin-bottom:2px;padding-top:25px;padding-bottom:25px;">
+							<div class="col-sm-4 col-xs-4">
+								<img src="media_library/mengalahkan-hati.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+							</div>
+							<div class="col-sm-8 col-xs-8">
+								<h5 style="font-weight:bold;margin-top:0px;color:green;">Test Judul Buku Kalo Panjang Banget Text Nya</h5>
+								<div><strong>Jumlah Pesanan:</strong> 1</div>
+								<div><strong>Harga:</strong> IDR 12.500</div>
+								<div style="margin-top:10px;"><button class="btn btn-primary" style="width:100%;height:40px;background:red;border:1px solid red!important;">HAPUS</button></div>
+							</div>
 						</div>
-						<div class="col-sm-8 col-xs-8">
-							<h5 style="font-weight:bold;margin-top:0px;color:green;">Test Judul Buku Kalo Panjang Banget Text Nya</h5>
-							<div><strong>Jumlah Pesanan:</strong> 1</div>
-							<div><strong>Harga:</strong> IDR 12.500</div>
-							<div style="margin-top:10px;"><button class="btn btn-primary" style="width:100%;height:40px;background:red;border:1px solid red!important;">HAPUS</button></div>
+						<div class="row" style="background:#fff;padding-top:10px;padding-bottom:10px;margin-bottom:2px;padding-top:25px;padding-bottom:25px;">
+							<div class="col-sm-4 col-xs-4">
+								<img src="media_library/Kirana-Happy-Little-World-1.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+							</div>
+							<div class="col-sm-8 col-xs-8">
+								<h5 style="font-weight:bold;margin-top:0px;color:green;">Test Judul Buku Kalo Panjang Banget Text Nya</h5>
+								<div><strong>Jumlah Pesanan:</strong> 1</div>
+								<div><strong>Harga:</strong> IDR 12.500</div>
+								<div style="margin-top:10px;"><button class="btn btn-primary" style="width:100%;height:40px;background:red;border:1px solid red!important;">HAPUS</button></div>
+							</div>
 						</div>
-					</div>
-					<div class="row" style="background:#fff;padding-top:10px;padding-bottom:10px;margin-bottom:2px;padding-top:25px;padding-bottom:25px;">
-						<div class="col-sm-4 col-xs-4">
-							<img src="media_library/Kirana-Happy-Little-World-1.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+						<div class="row" style="background:#fff;padding-top:10px;padding-bottom:10px;margin-bottom:2px;padding-top:25px;padding-bottom:25px;">
+							<div class="col-sm-4 col-xs-4">
+								<img src="media_library/Goals-Generation.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+							</div>
+							<div class="col-sm-8 col-xs-8">
+								<h5 style="font-weight:bold;margin-top:0px;color:green;">Test Judul Buku Kalo Panjang Banget Text Nya</h5>
+								<div><strong>Jumlah Pesanan:</strong> 1</div>
+								<div><strong>Harga:</strong> IDR 12.500</div>
+								<div style="margin-top:10px;"><button class="btn btn-primary" style="width:100%;height:40px;background:red;border:1px solid red!important;">HAPUS</button></div>
+							</div>
 						</div>
-						<div class="col-sm-8 col-xs-8">
-							<h5 style="font-weight:bold;margin-top:0px;color:green;">Test Judul Buku Kalo Panjang Banget Text Nya</h5>
-							<div><strong>Jumlah Pesanan:</strong> 1</div>
-							<div><strong>Harga:</strong> IDR 12.500</div>
-							<div style="margin-top:10px;"><button class="btn btn-primary" style="width:100%;height:40px;background:red;border:1px solid red!important;">HAPUS</button></div>
-						</div>
-					</div>
-					<div class="row" style="background:#fff;padding-top:10px;padding-bottom:10px;margin-bottom:2px;padding-top:25px;padding-bottom:25px;">
-						<div class="col-sm-4 col-xs-4">
-							<img src="media_library/Goals-Generation.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
-						</div>
-						<div class="col-sm-8 col-xs-8">
-							<h5 style="font-weight:bold;margin-top:0px;color:green;">Test Judul Buku Kalo Panjang Banget Text Nya</h5>
-							<div><strong>Jumlah Pesanan:</strong> 1</div>
-							<div><strong>Harga:</strong> IDR 12.500</div>
-							<div style="margin-top:10px;"><button class="btn btn-primary" style="width:100%;height:40px;background:red;border:1px solid red!important;">HAPUS</button></div>
-						</div>
-					</div>
+						-->
+					</div>	
+					
 					<div class="row" style="background:#fff;padding-top:10px;padding-bottom:10px;margin-bottom:2px;padding-top:25px;padding-bottom:25px;">
 						<div class="col-sm-12 col-xs-12 text-right" style="font-weight:bold;font-size:18px;">
-							<span style="margin-right:30px;">TOTAL:</span> IDR 125.000
+							<span style="margin-right:30px;">TOTAL:</span> IDR <span id="load_totalbelanja">0</span>
 						</div>
 					</div>
 					
 					<div class="row" style="margin-top:10px;">
 						<div class="col-sm-12 col-xs-12">
-							<a href="result_pesanan.html"><button class="btn btn-primary" style="width:100%;height:40px;background:#0f994e!important;">LANJUTKAN</button></a>
+							<button id="tombolCheckout" class="btn btn-primary" style="width:100%;height:40px;background:#0f994e!important;" onclick="SubmitOrder();">LANJUTKAN</button>
 						</div>
 					</div>
 					
@@ -333,5 +339,72 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+
+        	DisplayCartList();
+        	function DisplayCartList(){
+	        	
+	        	var array_isbn = localStorage.getItem('agronet_cart_isbn');
+	        	var array_qty = localStorage.getItem('agronet_cart_qty');
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						var function_result = jsonData.function_result;
+		
+						list_book_in_cart = jsonData.list_book_in_cart;
+						grandtotalcart = jsonData.grandtotalcart;
+							
+						document.getElementById('list_keranjang_belanja').innerHTML = list_book_in_cart;
+						document.getElementById('load_totalbelanja').innerHTML = grandtotalcart;	
+						
+						if( localStorage.getItem('agronet_cart_isbn') == '' ){
+							document.getElementById('list_keranjang_belanja').innerHTML = '';
+							document.getElementById('load_totalbelanja').innerHTML = 0;	
+							document.getElementById('tombolCheckout').style.display = 'none';
+						}
+						
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/cart/MobileAPI.php?action=DisplayCartList", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("isbn="+array_isbn+"&qty="+array_qty);
+
+        	}
+        	
+        	function SubmitOrder(){
+        	
+        		customer_id = localStorage.getItem('agronet_userid');
+				distributor_id = localStorage.getItem('agronet_distributorid');
+				array_isbn = localStorage.getItem('agronet_cart_isbn');
+				array_qty = localStorage.getItem('agronet_cart_qty');
+        		
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						var function_result = jsonData.function_result;
+		
+						if( function_result == 1 ){
+							localStorage.setItem('agronet_cart_isbn','');
+							localStorage.setItem('agronet_cart_qty','');
+							window.location='result_pesanan.html';
+						} else {
+							alert('Submit pesanan gagal! Silahkan hubungi administrator kami.');
+						}
+							
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/order/MobileAPI.php?action=SubmitOrder", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("isbn="+array_isbn+"&qty="+array_qty+"&distributor_id="+distributor_id+"&customer_id="+customer_id);
+	        	
+        	}
+        </script>
+        
 	</body>
 </html>
