@@ -78,7 +78,7 @@
 							<div class="form-group mb-lg">
 								<label>Username</label>
 								<div class="input-group input-group-icon">
-									<input name="username" type="text" class="form-control input-lg" />
+									<input id="inputusername" name="username" type="text" class="form-control input-lg" />
 									<span class="input-group-addon">
 										<span class="icon icon-lg">
 											<i class="fa fa-user"></i>
@@ -93,7 +93,7 @@
 									<a style="color:#0f994e;" href="reset_password.html" class="pull-right">Lupa Kata Sandi?</a>
 								</div>
 								<div class="input-group input-group-icon">
-									<input name="pwd" type="password" class="form-control input-lg" />
+									<input id="inputpassword" name="pwd" type="password" class="form-control input-lg" />
 									<span class="input-group-addon">
 										<span class="icon icon-lg">
 											<i class="fa fa-lock"></i>
@@ -104,8 +104,8 @@
 
 							<div class="row" style="margin-bottom:20px;">
 								<div class="col-sm-4 text-right">
-									<button type="button" class="btn btn-primary hidden-xs" style="background:#0f994e!important;" onclick="window.location='katalog.html'">Sign In</button>
-									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;" onclick="window.location='katalog.html'">Sign In</button>
+									<button type="button" class="btn btn-primary hidden-xs" style="background:#0f994e!important;" onclick="Login();">Sign In</button>
+									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;" onclick="Login();">Sign In</button>
 								</div>
 							</div>
 
@@ -138,5 +138,46 @@
 		
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        
+        	function Login(){
+	        	
+	        	var username = document.getElementById('inputusername').value;
+	        	var password = document.getElementById('inputpassword').value;
+	        	
+	        	if( username == '' || password == '' ){
+		        	alert('Username dan Password tidak boleh kosong');
+	        	} else {
+		        	
+		        	var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							
+							var jsonData = JSON.parse(this.responseText);
+							var function_result = jsonData.function_result;
+							var customer_id = jsonData.customer_id;
+			
+							if( function_result == 0 ){
+								alert('Login gagal. pastikan username dan password Anda, benar.');
+							} else if( function_result == 1 ){
+								localStorage.clear();
+								localStorage.setItem("agronet_userid",customer_id);
+								window.location="katalog.html";
+							}
+						}
+					};
+					xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=MobileLogin", true);
+					xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					xhttp.send("username="+username+"&password="+password);
+		        	
+	        	}
+	        	
+        	}
+        
+        </script>
+        
+        
+        
 	</body>
 </html>
