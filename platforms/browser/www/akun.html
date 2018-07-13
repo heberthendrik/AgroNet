@@ -139,7 +139,7 @@
 											<span>Pesanan</span>
 										</a>
 									</li>
-									<li class="nav-active">
+									<li class="nav-parent">
 										<a href="kiriman.html">
 											<i class="fa fa-cube" aria-hidden="true"></i>
 											<span>Kiriman</span>
@@ -169,7 +169,7 @@
 											<span>Notifikasi</span>
 										</a>
 									</li>
-									<li class="nav-parent">
+									<li class="nav-active">
 										<a href="akun.html">
 											<i class="fa fa-user" aria-hidden="true"></i>
 											<span>Akun Saya</span>
@@ -215,7 +215,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>History Pesanan</h2>
+						<h2>Akun Saya</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -229,46 +229,84 @@
 						</div>
 					</header>
 	
-					<!-- CONTENT -->
-					<div class="panel-body" style="background:transparent;" id="display_content">	
-						
-						<!--
-						<div class="row" style="background:#fff;padding-bottom:10px;margin-bottom:10px;padding-bottom:25px;border-top-right-radius:15px;padding-top:0px;border-bottom-left-radius:15px;">
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:10px;background:#0f994e;color:#fff;padding-top:10px;padding-bottom:10px;border-top-right-radius:15px;font-weight:bold;">
-								ID# [001]
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:-10px;">
-								<strong>Tanggal Pengiriman:</strong> 2018-07-12<br/>
-								<strong>Estimasi Tiba:</strong> 2018-07-12<br/>
-								<strong>Status:</strong> Dalam Perjalanan
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-top:10px;text-align:right;"><a href="kiriman_detail.html">Lihat Detail</a></div>
+					<!-- CONTENT -->	
+					<div class="row">
+						<div class="col-lg-12">
+							<section class="panel">
+								<div class="panel-body">
+									<form class="form-horizontal form-bordered" method="get">
+									
+										<div class="row">
+											<div class="col-sm-12 col-xs-12">
+												<h3>Info Toko</h3>
+												<div class="table-responsive">
+													<table class="table table-striped mb-none">
+														<tr>
+															<td>Nama</td>
+															<td><span id="load_nama">Loading...</span></td>
+														</tr>
+														<tr>
+															<td>Lokasi</td>
+															<td><span id="load_lokasi">Loading...</span></td>
+														</tr>
+														<tr>
+															<td>No Telp</td>
+															<td><span id="load_phone">Loading...</span>
+														</tr>
+														<tr>
+															<td>Outstanding</td>
+															<td><span id="load_oustanding">Loading...</span></td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+										
+									</form>
+								</div>
+							</section>
+					
 						</div>
-						<div class="row" style="background:#fff;padding-bottom:10px;margin-bottom:10px;padding-bottom:25px;border-top-right-radius:15px;padding-top:0px;border-bottom-left-radius:15px;">
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:10px;background:#0f994e;color:#fff;padding-top:10px;padding-bottom:10px;border-top-right-radius:15px;font-weight:bold;">
-								ID# [001]
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:-10px;">
-								<strong>Tanggal Pengiriman:</strong> 2018-07-12<br/>
-								<strong>Estimasi Tiba:</strong> 2018-07-12<br/>
-								<strong>Status:</strong> Dalam Perjalanan
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-top:10px;text-align:right;"><a href="kiriman_detail.html">Lihat Detail</a></div>
-						</div>
-						<div class="row" style="background:#fff;padding-bottom:10px;margin-bottom:10px;padding-bottom:25px;border-top-right-radius:15px;padding-top:0px;border-bottom-left-radius:15px;">
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:10px;background:#0f994e;color:#fff;padding-top:10px;padding-bottom:10px;border-top-right-radius:15px;font-weight:bold;">
-								ID# [001]
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:-10px;">
-								<strong>Tanggal Pengiriman:</strong> 2018-07-12<br/>
-								<strong>Estimasi Tiba:</strong> 2018-07-12<br/>
-								<strong>Status:</strong> Dalam Perjalanan
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-top:10px;text-align:right;"><a href="kiriman_detail.html">Lihat Detail</a></div>
-						</div>
-						-->
 					</div>
-
+					
+					<!-- CONTENT -->	
+					<div class="row">
+						<div class="col-lg-12">
+							<section class="panel">
+								<div class="panel-body">
+									<form class="form-horizontal form-bordered" method="get">
+									
+										<div class="row">
+											<div class="col-sm-12 col-xs-12">
+												<h3>Info Sales</h3>
+												<div class="table-responsive">
+													<table class="table table-striped mb-none">
+														<tr>
+															<td>Nama</td>
+															<td><span id="load_salesname">Loading...</span></td>
+														</tr>
+														<tr>
+															<td>No HP</td>
+															<td><span id="load_salesphone">Loading...</span></td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+										
+									</form>
+								</div>
+							</section>
+					
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<a href="ubah_password.html"><button class="btn btn-primary" style="width:100%;height:40px;background:#0f994e!important;">UBAH PASSWORD</button></a>
+						</div>
+					</div>
+					
 					<!-- END CONTENT -->
 
 				</section>
@@ -330,30 +368,32 @@
         
         <script>
         
-        	LoadKiriman();
-        	function LoadKiriman(){
-	        	
-	        	customer_id = localStorage.getItem('agronet_userid');
+        	FetchUserInfo();
+        	function FetchUserInfo(){
+        	
+        		customer_id = localStorage.getItem('agronet_userid');
 	        	
 	        	var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						
 						var jsonData = JSON.parse(this.responseText);
-/* 						var function_result = jsonData.function_result; */
-		
+
 						display_content = jsonData.display_content;
-							
-						document.getElementById('display_content').innerHTML = display_content;	
-						
+						document.getElementById('load_nama').innerHTML = jsonData.nama;
+						document.getElementById('load_lokasi').innerHTML = jsonData.lokasi;
+						document.getElementById('load_phone').innerHTML = jsonData.tlp;
+						document.getElementById('load_oustanding').innerHTML = jsonData.outstanding;
+						document.getElementById('load_salesname').innerHTML = jsonData.sales_name;
+						document.getElementById('load_salesphone').innerHTML = jsonData.sales_phone;
+		
 					}
 				};
-				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/shipping/MobileAPI.php?action=DisplayAllKiriman", true);
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=RetrieveAccountInfo", true);
 				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				xhttp.send("customer_id="+customer_id);
 	        	
         	}
-        
         </script>
         
 	</body>

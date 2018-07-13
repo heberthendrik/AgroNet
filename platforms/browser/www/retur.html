@@ -139,13 +139,13 @@
 											<span>Pesanan</span>
 										</a>
 									</li>
-									<li class="nav-active">
+									<li class="nav-parent">
 										<a href="kiriman.html">
 											<i class="fa fa-cube" aria-hidden="true"></i>
 											<span>Kiriman</span>
 										</a>
 									</li>
-									<li class="nav-parent">
+									<li class="nav-active">
 										<a href="retur.html">
 											<i class="fa fa-cube" aria-hidden="true"></i>
 											<span>Retur</span>
@@ -215,7 +215,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>History Pesanan</h2>
+						<h2>Retur</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -230,43 +230,34 @@
 					</header>
 	
 					<!-- CONTENT -->
-					<div class="panel-body" style="background:transparent;" id="display_content">	
-						
-						<!--
-						<div class="row" style="background:#fff;padding-bottom:10px;margin-bottom:10px;padding-bottom:25px;border-top-right-radius:15px;padding-top:0px;border-bottom-left-radius:15px;">
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:10px;background:#0f994e;color:#fff;padding-top:10px;padding-bottom:10px;border-top-right-radius:15px;font-weight:bold;">
-								ID# [001]
+					<div class="panel-body">
+						<form action="katalog.html">
+							<div class="form-group mb-lg">
+								<label>Jumlah Koli</label>
+								<div class="input-group input-group-icon">
+									<input id="input_qty" name="username" type="number" class="form-control input-lg" />
+								</div>
 							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:-10px;">
-								<strong>Tanggal Pengiriman:</strong> 2018-07-12<br/>
-								<strong>Estimasi Tiba:</strong> 2018-07-12<br/>
-								<strong>Status:</strong> Dalam Perjalanan
+							<div class="form-group mb-lg">
+								<label>Tanggal Pengambilan</label>
+								<div class="input-group input-group-icon">
+									<input id="input_tgl" name="username" type="date" class="form-control input-lg" />
+								</div>
 							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-top:10px;text-align:right;"><a href="kiriman_detail.html">Lihat Detail</a></div>
-						</div>
-						<div class="row" style="background:#fff;padding-bottom:10px;margin-bottom:10px;padding-bottom:25px;border-top-right-radius:15px;padding-top:0px;border-bottom-left-radius:15px;">
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:10px;background:#0f994e;color:#fff;padding-top:10px;padding-bottom:10px;border-top-right-radius:15px;font-weight:bold;">
-								ID# [001]
+							<div class="form-group mb-lg">
+								<label>Catatan</label>
+								<div class="input-group input-group-icon">
+									<textarea id="input_catatan" class="form-control" style="width:100%;height:150px;"></textarea>
+								</div>
 							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:-10px;">
-								<strong>Tanggal Pengiriman:</strong> 2018-07-12<br/>
-								<strong>Estimasi Tiba:</strong> 2018-07-12<br/>
-								<strong>Status:</strong> Dalam Perjalanan
+
+							<div class="row" style="margin-bottom:20px;">
+								<div class="col-sm-4 text-right">
+									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;" onclick="SubmitRetur();">Lanjut</button>
+								</div>
 							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-top:10px;text-align:right;"><a href="kiriman_detail.html">Lihat Detail</a></div>
-						</div>
-						<div class="row" style="background:#fff;padding-bottom:10px;margin-bottom:10px;padding-bottom:25px;border-top-right-radius:15px;padding-top:0px;border-bottom-left-radius:15px;">
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:10px;background:#0f994e;color:#fff;padding-top:10px;padding-bottom:10px;border-top-right-radius:15px;font-weight:bold;">
-								ID# [001]
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-bottom:-10px;">
-								<strong>Tanggal Pengiriman:</strong> 2018-07-12<br/>
-								<strong>Estimasi Tiba:</strong> 2018-07-12<br/>
-								<strong>Status:</strong> Dalam Perjalanan
-							</div>
-							<div class="col-sm-12 col-xs-12" style="margin-top:10px;text-align:right;"><a href="kiriman_detail.html">Lihat Detail</a></div>
-						</div>
-						-->
+
+						</form>
 					</div>
 
 					<!-- END CONTENT -->
@@ -329,31 +320,51 @@
         <script type="text/javascript" src="js/index.js"></script>
         
         <script>
-        
-        	LoadKiriman();
-        	function LoadKiriman(){
+        	function SubmitRetur(){
 	        	
 	        	customer_id = localStorage.getItem('agronet_userid');
+	        	qty = document.getElementById('input_qty').value;
+	        	catatan = document.getElementById('input_catatan').value;
+	        	
+	        	var date = document.getElementById('input_tgl').value;
+	        	
+	        	if( date == '' ){
+		        	var today = new Date();
+					var dd = today.getDate();
+					var ddchecker = dd.toString();
+					if( ddchecker.length == 1 ){
+						dd = dd.toString();
+						dd = "0"+dd;
+					}
+					
+					var mm = today.getMonth()+1; //January is 0!
+					var mmchecker = mm.toString();
+					if( mmchecker.length == 1 ){
+						mm = mm.toString();
+						mm = "0"+mm;
+					}
+					
+					var yyyy = today.getFullYear();
+					
+					var finaldate = yyyy+"-"+mm+"-"+dd;
+					document.getElementById('input_tgl').value = finaldate;
+	        	} else {
+		        	var finaldate = date;
+	        	}
 	        	
 	        	var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						
 						var jsonData = JSON.parse(this.responseText);
-/* 						var function_result = jsonData.function_result; */
-		
-						display_content = jsonData.display_content;
-							
-						document.getElementById('display_content').innerHTML = display_content;	
-						
+						window.location='result_retur.html';
 					}
 				};
-				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/shipping/MobileAPI.php?action=DisplayAllKiriman", true);
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/return/MobileAPI.php?action=SubmitRetur", true);
 				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				xhttp.send("customer_id="+customer_id);
+				xhttp.send("customer_id="+customer_id+"&jumlahkoli="+qty+"&tanggalpengembalian="+finaldate+"&catatan="+catatan);
 	        	
         	}
-        
         </script>
         
 	</body>
