@@ -331,10 +331,12 @@
 						if (this.readyState == 4 && this.status == 200) {
 							
 							var jsonData = JSON.parse(this.responseText);
-							var function_result = jsonData.function_result;
+							function_result = jsonData.function_result;
+							querye = jsonData.query;
 			
 							//document.getElementById('load_listpesanan').innerHTML = display_content;	
-							window.location='result_komplain.html';
+							//window.location='result_komplain.html';
+							alert(querye);
 							
 						}
 					};
