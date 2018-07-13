@@ -235,20 +235,19 @@
 							<div class="form-group mb-lg">
 								<label>Subject</label>
 								<div class="input-group input-group-icon">
-									<input name="username" type="text" class="form-control input-lg" />
+									<input id="input_subject" name="username" type="text" class="form-control input-lg" />
 								</div>
 							</div>
 							<div class="form-group mb-lg">
 								<label>Pesan Anda</label>
 								<div class="input-group input-group-icon">
-									<textarea class="form-control" style="width:100%;height:150px;"></textarea>
+									<textarea id="input_pesan" class="form-control" style="width:100%;height:150px;"></textarea>
 								</div>
 							</div>
 
 							<div class="row" style="margin-bottom:20px;">
 								<div class="col-sm-4 text-right">
-									<button type="button" class="btn btn-primary hidden-xs" style="background:#0f994e!important;" onclick="window.location='result_komplain.html'">Kirim</button>
-									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;" onclick="window.location='result_komplain.html'">Kirim</button>
+									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;" onclick="SubmitKomplain();">Kirim</button>
 								</div>
 							</div>
 
@@ -313,5 +312,41 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        	
+        	function SubmitKomplain(){
+	        	
+	        	subjectx = document.getElementById('input_subject').value;
+	        	messagex = document.getElementById('input_pesan').value;
+	        	customer_id = document.getElementById('agronet_userid');
+	        	distributor_id = document.getElementById('agronet_distributorid');
+	        	
+	        	if( subjectx == '' || subjectx == '' ){
+		        	alert('Subject dan pesan tidak boleh kosong.');
+	        	} else {
+		        	
+		        	var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							
+							var jsonData = JSON.parse(this.responseText);
+							var function_result = jsonData.function_result;
+			
+							//document.getElementById('load_listpesanan').innerHTML = display_content;	
+							window.location='result_komplain.html';
+							
+						}
+					};
+					xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/message/MobileAPI.php?action=SubmitComplaint", true);
+					xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					xhttp.send("subject="+subjectx+"&message="+messagex+"&customer_id="+customer_id+"&distributor_id="+distributor_id);
+					
+	        	}
+	        	
+        	}
+        	
+        </script>
+        
 	</body>
 </html>
