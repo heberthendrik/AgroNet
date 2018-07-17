@@ -116,7 +116,7 @@
 						<li>
 							<a href="pesanan.html" class="dropdown-toggle notification-icon" >
 								<i class="fa fa-shopping-cart"></i>
-								<span class="badge">3</span>
+								<span class="badge" id="load_cart_number">-</span>
 							</a>
 						</li>
 					</ul>
@@ -377,6 +377,24 @@
 				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=GetNotificationNumber", true);
 				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				xhttp.send("customer_id="+customer_id+"&distributor_id="+distributor_id);
+	        	
+        	}
+        	
+        	GetCurrentCartAmount();
+        	function GetCurrentCartAmount(){
+	        	
+	        	openModal();
+	        	var string_cart_isbn = localStorage.getItem('agronet_cart_isbn');
+	        	var array_cart_isbn = string_cart_isbn.split("|");
+	        	total_cart_amount = (array_cart_isbn.length)-1;
+				
+				if( total_cart_amount > 0 ){
+					document.getElementById('load_cart_number').innerHTML = total_cart_amount;		
+					closeModal();
+				} else {
+					document.getElementById('load_cart_number').style.display = 'none';		
+					closeModal();
+				}
 	        	
         	}
         	
