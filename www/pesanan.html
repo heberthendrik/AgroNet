@@ -486,6 +486,43 @@
 	        	
         	}
         	
+        	function HapusSpecificISBN(nomor_index){
+	        	
+	        	openModal();
+	        	fullstack_isbn = localStorage.getItem('agronet_cart_isbn');
+	        	fullstack_qty = localStorage.getItem('agronet_cart_qty');
+	        	deleteindex = nomor_index;
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						final_fullstack_isbn = jsonData.final_fullstack_isbn;
+						final_fullstack_qty = jsonData.final_fullstack_qty;
+						
+						localStorage.setItem('agronet_cart_isbn', final_fullstack_isbn);
+						localStorage.setItem('agronet_cart_qty', final_fullstack_qty);
+						
+						if( localStorage.getItem('agronet_cart_isbn') == '|' ){
+							localStorage.setItem('agronet_cart_isbn', '');
+						}
+						
+						if( localStorage.getItem('agronet_cart_qty') == '|' ){
+							localStorage.setItem('agronet_cart_qty', '');
+						}
+						
+						DisplayCartList();
+						closeModal();
+			
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/cart/MobileAPI.php?action=DeleteSpecificCartItem", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("isbn="+fullstack_isbn+"&qty="+fullstack_qty+"&deleteindex="+deleteindex);
+	        	
+        	}
+        	
         	function openModal(){
 			  document.getElementById("modal").style.display="block";
 			}

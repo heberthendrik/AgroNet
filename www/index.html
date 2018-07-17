@@ -170,10 +170,15 @@
         
         <script>
         
+        	localStorage.setItem("agronet_userid",'');
+			localStorage.setItem("agronet_distributorid",'');
+        
         	function Login(){
 	        	
 	        	var username = document.getElementById('inputusername').value;
 	        	var password = document.getElementById('inputpassword').value;
+	        	localStorage.setItem("agronet_cart_isbn",'');
+				localStorage.setItem("agronet_cart_qty",'');
 	        	
 	        	if( username == '' || password == '' ){
 		        	alert('Username dan Password tidak boleh kosong');
