@@ -110,7 +110,7 @@
 						<li>
 							<a href="notifikasi.html" class="dropdown-toggle notification-icon" >
 								<i class="fa fa-envelope"></i>
-								<span class="badge">4</span>
+								<span class="badge" id="load_notif_number">-</span>
 							</a>
 						</li>
 						<li>
@@ -390,9 +390,38 @@
         
         <script>
         
+        	openModal();
+        	GetTotalNewNotifBadge();
+        	function GetTotalNewNotifBadge(){
+	        	
+	        	customer_id = localStorage.getItem('agronet_userid');
+	        	distributor_id = localStorage.getItem('agronet_distributorid');
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						total_new_notif = jsonData.total_new_notif;
+		
+						if( total_new_notif > 0){
+							document.getElementById('load_notif_number').innerHTML = total_new_notif;		
+							closeModal();
+						} else {
+							document.getElementById('load_notif_number').style.display = 'none';		
+							closeModal();
+						}
+						
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=GetNotificationNumber", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("customer_id="+customer_id+"&distributor_id="+distributor_id);
+	        	
+        	}
+        
 			openModal();        	
         	DisplayBookByID();
-        	closeModal();
         	function DisplayBookByID(){
 
 	        	var date = document.getElementById('inputdate').value;
@@ -434,11 +463,13 @@
 		
 						if( function_result == 0 ){
 							alert('Belum ada buku baru di tanggal '+finaldate+'. Silahkan memilih tanggal lainnya.');
+							closeModal();
 						} else if( function_result == 1 ){
 							
 							var display_content = jsonData.display_content;
 							
 							document.getElementById('display_book_by_date').innerHTML = display_content;
+							closeModal();
 							
 						}
 					}

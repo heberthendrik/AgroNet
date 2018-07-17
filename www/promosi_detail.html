@@ -64,6 +64,34 @@
 
 		<!-- Head Libs -->
 		<script src="LIBRARYS/assets/vendor/modernizr/modernizr.js"></script>
+		
+		<!-- LOADING -->
+		<style>
+			.modal {
+			display:    none;
+			position:   fixed;
+			z-index:    1000;
+			top:        0;
+			left:       0;
+			height:     100%;
+			width:      100%;
+			background: rgba( 255, 255, 255, .8 )
+			url('http://i.stack.imgur.com/FhHRx.gif')
+			50% 50%
+			no-repeat;
+			}
+			/* When the body has the loading class, we turn
+			the scrollbar off with overflow:hidden */
+			body.loading .modal {
+			overflow: hidden;
+			}
+			/* Anytime the body has the loading class, our
+			modal element will be visible */
+			body.loading .modal {
+			display: block;
+			}
+		</style>
+		<!-- LOADING -->
 
 	</head>
 	<body>
@@ -82,7 +110,7 @@
 						<li>
 							<a href="notifikasi.html" class="dropdown-toggle notification-icon" >
 								<i class="fa fa-envelope"></i>
-								<span class="badge">4</span>
+								<span class="badge" id="load_notif_number">-</span>
 							</a>
 						</li>
 						<li>
@@ -237,7 +265,7 @@
 									
 										<div class="row">
 											<div class="col-sm-12 col-xs-12" id="load_cover">
-												<img src="media_library/promo1.jpg" class="img-responsive" style="width:100%;height:auto;"/>
+												<img src="http://175.103.58.5/agro-crm/Admin/media/coverpromo/" class="img-responsive" style="width:100%;height:auto;"/>
 											</div>
 										</div>
 										
@@ -250,8 +278,8 @@
 									
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12">
-											<h3 style="margin-bottom:30px;" id="load_judul">Judul Promosi</h3>
-											<p id="load_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<h3 style="margin-bottom:30px;" id="load_title">Loading judul...</h3>
+											<p id="load_content">Loading content...</p>
 										</div>
 									</div>
 										
@@ -318,11 +346,43 @@
 		<!-- Examples -->
 		<script src="LIBRARYS/assets/javascripts/dashboard/examples.dashboard.js"></script>
 		
+		<div id="modal" class="modal"><!-- Place at bottom of page --></div>
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         
         <script>
+        
+        	openModal();
+        	GetTotalNewNotifBadge();
+        	function GetTotalNewNotifBadge(){
+	        	
+	        	customer_id = localStorage.getItem('agronet_userid');
+	        	distributor_id = localStorage.getItem('agronet_distributorid');
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						total_new_notif = jsonData.total_new_notif;
+		
+						if( total_new_notif > 0){
+							document.getElementById('load_notif_number').innerHTML = total_new_notif;		
+							closeModal();
+						} else {
+							document.getElementById('load_notif_number').style.display = 'none';		
+							closeModal();
+						}
+						
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=GetNotificationNumber", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("customer_id="+customer_id+"&distributor_id="+distributor_id);
+	        	
+        	}
         	
+        	openModal();
         	GetPromoDetail();
 			function GetPromoDetail(){
 	        	
@@ -355,9 +415,10 @@
 						content = jsonData.content;
 		
 						
-						document.getElementById('load_cover').innerHTML = cover;
+						document.getElementById('load_cover').innerHTML = '<img src="http://175.103.58.5/agro-crm/Admin/media/coverpromo/'+cover+'" class="img-responsive" style="width:100%;height:auto;"/>';
 						document.getElementById('load_title').innerHTML = title;
 						document.getElementById('load_content').innerHTML = content;
+						closeModal();
 						
 					}
 				};
@@ -366,6 +427,14 @@
 				xhttp.send("pid="+promoid);
 				
         	}
+        	
+        	function openModal(){
+			  document.getElementById("modal").style.display="block";
+			}
+
+			function closeModal(){
+			  document.getElementById("modal").style.display="none";
+			}
         	
         </script>
         

@@ -64,6 +64,34 @@
 
 		<!-- Head Libs -->
 		<script src="LIBRARYS/assets/vendor/modernizr/modernizr.js"></script>
+		
+		<!-- LOADING -->
+		<style>
+			.modal {
+			display:    none;
+			position:   fixed;
+			z-index:    1000;
+			top:        0;
+			left:       0;
+			height:     100%;
+			width:      100%;
+			background: rgba( 255, 255, 255, .8 )
+			url('http://i.stack.imgur.com/FhHRx.gif')
+			50% 50%
+			no-repeat;
+			}
+			/* When the body has the loading class, we turn
+			the scrollbar off with overflow:hidden */
+			body.loading .modal {
+			overflow: hidden;
+			}
+			/* Anytime the body has the loading class, our
+			modal element will be visible */
+			body.loading .modal {
+			display: block;
+			}
+		</style>
+		<!-- LOADING -->
 
 	</head>
 	<body>
@@ -82,7 +110,7 @@
 						<li>
 							<a href="notifikasi.html" class="dropdown-toggle notification-icon" >
 								<i class="fa fa-envelope"></i>
-								<span class="badge">4</span>
+								<span class="badge" id="load_notif_number">-</span>
 							</a>
 						</li>
 						<li>
@@ -336,11 +364,43 @@
 		<!-- Examples -->
 		<script src="LIBRARYS/assets/javascripts/dashboard/examples.dashboard.js"></script>
 		
+		<div id="modal" class="modal"><!-- Place at bottom of page --></div>
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         
         <script>
         
+        	openModal();
+        	GetTotalNewNotifBadge();
+        	function GetTotalNewNotifBadge(){
+	        	
+	        	customer_id = localStorage.getItem('agronet_userid');
+	        	distributor_id = localStorage.getItem('agronet_distributorid');
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						total_new_notif = jsonData.total_new_notif;
+		
+						if( total_new_notif > 0){
+							document.getElementById('load_notif_number').innerHTML = total_new_notif;		
+							closeModal();
+						} else {
+							document.getElementById('load_notif_number').style.display = 'none';		
+							closeModal();
+						}
+						
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=GetNotificationNumber", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("customer_id="+customer_id+"&distributor_id="+distributor_id);
+	        	
+        	}
+        
+        	openModal();
         	DisplayAllPromo();
         	function DisplayAllPromo(){
 	        	
@@ -352,7 +412,7 @@
 						display_content = jsonData.display_content;
 						
 						document.getElementById('display_content').innerHTML = display_content;
-						
+						closeModal();
 					}
 				};
 				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/promo/MobileAPI.php?action=DisplayAllPromo", true);
@@ -366,6 +426,14 @@
 	        	window.location='promosi_detail.html?pid='+promoid;
 	        	
         	}
+        	
+        	function openModal(){
+			  document.getElementById("modal").style.display="block";
+			}
+
+			function closeModal(){
+			  document.getElementById("modal").style.display="none";
+			}
         
         </script>
         
