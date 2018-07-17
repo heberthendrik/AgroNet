@@ -64,34 +64,6 @@
 
 		<!-- Head Libs -->
 		<script src="LIBRARYS/assets/vendor/modernizr/modernizr.js"></script>
-		
-		<!-- LOADING -->
-		<style>
-			.modal {
-			display:    none;
-			position:   fixed;
-			z-index:    1000;
-			top:        0;
-			left:       0;
-			height:     100%;
-			width:      100%;
-			background: rgba( 255, 255, 255, .8 )
-			url('http://i.stack.imgur.com/FhHRx.gif')
-			50% 50%
-			no-repeat;
-			}
-			/* When the body has the loading class, we turn
-			the scrollbar off with overflow:hidden */
-			body.loading .modal {
-			overflow: hidden;
-			}
-			/* Anytime the body has the loading class, our
-			modal element will be visible */
-			body.loading .modal {
-			display: block;
-			}
-		</style>
-		<!-- LOADING -->
 
 	</head>
 	<body>
@@ -110,13 +82,13 @@
 						<li>
 							<a href="notifikasi.html" class="dropdown-toggle notification-icon" >
 								<i class="fa fa-envelope"></i>
-								<span class="badge" id="load_notif_number">-</span>
+								<span class="badge">4</span>
 							</a>
 						</li>
 						<li>
 							<a href="pesanan.html" class="dropdown-toggle notification-icon" >
 								<i class="fa fa-shopping-cart"></i>
-								<span class="badge" id="load_cart_number">-</span>
+								<span class="badge">3</span>
 							</a>
 						</li>
 					</ul>
@@ -270,38 +242,37 @@
 							<div class="form-group mb-lg">
 								<label>Jumlah Pembayaran</label>
 								<div class="input-group input-group-icon">
-									<input id="input_jumlah_pembayaran" name="username" type="number" class="form-control input-lg" />
+									<input name="username" type="number" class="form-control input-lg" />
 								</div>
 							</div>
 							<div class="form-group mb-lg">
 								<label>Bukti Pembayaran</label>
 								<div class="input-group input-group-icon">
-									<input id="input_bukti_transfer"  name="username" type="file" class="form-control input-lg" accept="image/*" />
-									<span id="progress"></span>
+									<input name="username" type="file" class="form-control input-lg" accept="image/*" />
 								</div>
 							</div>
 							<div class="form-group mb-lg">
 								<label>Tanggal Pembayaran</label>
 								<div class="input-group input-group-icon">
-									<input id="input_tanggal_pembayaran" name="username" type="date" class="form-control input-lg" />
+									<input name="username" type="date" class="form-control input-lg" />
 								</div>
 							</div>
 							<div class="form-group mb-lg">
 								<label>Catatan</label>
 								<div class="input-group input-group-icon">
-									<textarea id="input_catatan" class="form-control" style="width:100%;height:150px;"></textarea>
+									<textarea class="form-control" style="width:100%;height:150px;"></textarea>
 								</div>
 							</div>
 
 							<div class="row" style="margin-bottom:20px;">
 								<div class="col-sm-4 text-right">
-									<button onclick="SubmitPaymentConfirmation();" type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;">Bayar</button>
+									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" style="background:#0f994e!important;">Bayar</button>
 								</div>
 							</div>
 
 						</form>
 					</div>
-					
+
 					<!-- END CONTENT -->
 
 				</section>
@@ -358,150 +329,7 @@
 		<!-- Examples -->
 		<script src="LIBRARYS/assets/javascripts/dashboard/examples.dashboard.js"></script>
 		
-		<div id="modal" class="modal"><!-- Place at bottom of page --></div>
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        
-        <script>
-        
-        	openModal();
-        	GetTotalNewNotifBadge();
-        	function GetTotalNewNotifBadge(){
-	        	
-	        	customer_id = localStorage.getItem('agronet_userid');
-	        	distributor_id = localStorage.getItem('agronet_distributorid');
-	        	
-	        	var xhttp = new XMLHttpRequest();
-				xhttp.onreadystatechange = function() {
-					if (this.readyState == 4 && this.status == 200) {
-						
-						var jsonData = JSON.parse(this.responseText);
-						total_new_notif = jsonData.total_new_notif;
-		
-						if( total_new_notif > 0){
-							document.getElementById('load_notif_number').innerHTML = total_new_notif;		
-							closeModal();
-						} else {
-							document.getElementById('load_notif_number').style.display = 'none';		
-							closeModal();
-						}
-						
-					}
-				};
-				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/user_operation/MobileAPI.php?action=GetNotificationNumber", true);
-				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				xhttp.send("customer_id="+customer_id+"&distributor_id="+distributor_id);
-	        	
-        	}
-        	
-        	GetCurrentCartAmount();
-        	function GetCurrentCartAmount(){
-	        	
-	        	openModal();
-	        	var string_cart_isbn = localStorage.getItem('agronet_cart_isbn');
-	        	var array_cart_isbn = string_cart_isbn.split("|");
-	        	total_cart_amount = (array_cart_isbn.length)-1;
-				
-				if( total_cart_amount > 0 ){
-					document.getElementById('load_cart_number').innerHTML = total_cart_amount;		
-					closeModal();
-				} else {
-					document.getElementById('load_cart_number').style.display = 'none';		
-					closeModal();
-				}
-	        	
-        	}
-        	
-        	function uploadFile(deposit_new_id) {
-				
-				customer_id = localStorage.getItem('agronet_userid');
-				var fd = new FormData();
-
-				var count = document.getElementById('input_bukti_transfer').files.length;
-
-				for (var index = 0; index < count; index ++)
-				{
-					var file = document.getElementById('input_bukti_transfer').files[index];
-					fd.append('fileBuktiTransfer', file);
-				}
-
-				var xhr = new XMLHttpRequest();
-				xhr.upload.addEventListener("progress", uploadProgress, false);
-				xhr.addEventListener("load", uploadComplete, false);
-				xhr.addEventListener("error", uploadFailed, false);
-				xhr.addEventListener("abort", uploadCanceled, false);
-				xhr.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/payment/MobileAPI.php?action=UploadPaymentImage&pid="+deposit_new_id+"&customer_id="+customer_id);
-				xhr.send(fd);
-
-			}
-
-			function uploadProgress(evt) {
-				if (evt.lengthComputable) {
-					var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-					document.getElementById('progress').innerHTML = percentComplete.toString() + '%';
-				}
-				else {
-					document.getElementById('progress').innerHTML = 'unable to compute';
-				}
-			}
-
-			function uploadComplete(evt) {
-				/* This event is raised when the server send back a response */
-				//alert(evt.target.responseText);
-				alert('Informasi payment Anda telah berhasil terkirim. Kami akan menghubungi Anda kembali setelah data pembayaran telah terverifikasi.');
-				window.location='tagihan.html';
-				closeModal();
-			}
-
-			function uploadFailed(evt) {
-				alert("There was an error attempting to upload the file.");
-			}
-
-			function uploadCanceled(evt) {
-				alert("The upload has been canceled by the user or the browser dropped the connection.");
-			}
-			
-			
-			
-			function SubmitPaymentConfirmation(){
-				
-				openModal();
-				customer_id = localStorage.getItem('agronet_userid');
-				jumlah_pembayaran = document.getElementById('input_jumlah_pembayaran').value;
-				tanggal_pembayaran = document.getElementById('input_tanggal_pembayaran').value;
-				catatan = document.getElementById('input_catatan').value;
-				
-				var xhttp = new XMLHttpRequest();
-				xhttp.onreadystatechange = function() {
-					if (this.readyState == 4 && this.status == 200) {
-						
-						var jsonData = JSON.parse(this.responseText);
-						new_payment_id = jsonData.new_payment_id;
-						
-						uploadFile(new_payment_id);
-						
-					}
-				};
-				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/payment/MobileAPI.php?action=SubmitPayment", true);
-				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				xhttp.send("customer_id="+customer_id+"&jumlah_pembayaran="+jumlah_pembayaran+"&tanggal_pembayaran="+tanggal_pembayaran+"&catatan="+catatan);
-				
-			}
-			
-			
-        	
-        	function openModal(){
-			  document.getElementById("modal").style.display="block";
-			}
-
-			function closeModal(){
-			  document.getElementById("modal").style.display="none";
-			}
-			
-			
-        
-        </script>
-        
-        
 	</body>
 </html>

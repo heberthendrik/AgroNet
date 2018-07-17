@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>Upload Payment</title>  
+</head>
+<body>
+  <input id="inp" type='file'>
+  <p id="b64"></p>
+  <img id="img" height="150">
+  
+  <form method="POST" action="http://175.103.58.5/agro-crm/Admin/mobile/payment/uploadProof.php">
+    <input type="hidden" id="encoded_string" name="encoded_string" value="">
+    <input type="hidden" id="filename" name="filename" value="coffee.jpg">
+    <button id="submitButton" type="submit">Post</button>
+  </form>
+  
+<script>
+  var imageString = "";
+
+  function readFile() {
+    if  (this.files && this.files[0]) {
+        var FR= new FileReader();
+        FR.addEventListener("load", function(e) {
+          imageString = e.target.result.split("data:image/jpeg;base64,")[1];
+          $("#b64").html(imageString);
+          $("#encoded_string").val(imageString);
+        });  
+        FR.readAsDataURL(this.files[0]);
+    } 
+  }
+  
+  document.getElementById("inp").addEventListener("change", readFile);
+  
+</script>
+</body>
+</html>
