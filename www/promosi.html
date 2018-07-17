@@ -229,50 +229,55 @@
 						</div>
 					</header>
 	
-									
-					<div class="row">
-						<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/promo1.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+					<div id="display_content">
+						Loading data promosi...
+						<!--
+						<div class="row">
+							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+								<div style="border:1px solid #eee;margin-bottom:15px;">
+									<div>
+										<img src="media_library/promo1.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+									</div>
+									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
 								</div>
-								<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
 							</div>
 						</div>
+						
+						<div class="row">
+							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+								<div style="border:1px solid #eee;margin-bottom:15px;">
+									<div>
+										<img src="media_library/promo2.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+									</div>
+									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+								<div style="border:1px solid #eee;margin-bottom:15px;">
+									<div>
+										<img src="media_library/promo3.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+									</div>
+									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+								<div style="border:1px solid #eee;margin-bottom:15px;">
+									<div>
+										<img src="media_library/promo4.png" style="width:100%;height:auto;border-top-right-radius:15px;" />
+									</div>
+									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
+								</div>
+							</div>
+						</div>
+						-->
 					</div>
 					
-					<div class="row">
-						<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/promo2.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
-								</div>
-								<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/promo3.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
-								</div>
-								<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
-							<div style="border:1px solid #eee;margin-bottom:15px;">
-								<div>
-									<img src="media_library/promo4.png" style="width:100%;height:auto;border-top-right-radius:15px;" />
-								</div>
-								<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
-							</div>
-						</div>
-					</div>
 					
 					
 					<!-- END CONTENT -->
@@ -333,5 +338,38 @@
 		
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+        
+        	DisplayAllPromo();
+        	function DisplayAllPromo(){
+	        	
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						display_content = jsonData.display_content;
+						
+						document.getElementById('display_content').innerHTML = display_content;
+						
+					}
+				};
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/promo/MobileAPI.php?action=DisplayAllPromo", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("");
+		        
+        	}
+        	
+        	function RedirectToPromoDetail(promoid){
+	        	
+	        	window.location='promosi_detail.html?pid='+promoid;
+	        	
+        	}
+        
+        </script>
+        
+        
+        
 	</body>
 </html>

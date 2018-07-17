@@ -58,9 +58,38 @@
 
 		<!-- Head Libs -->
 		<script src="LIBRARYS/assets/vendor/modernizr/modernizr.js"></script>
+		
+		<!-- LOADING -->
+		<style>
+			.modal {
+			display:    none;
+			position:   fixed;
+			z-index:    1000;
+			top:        0;
+			left:       0;
+			height:     100%;
+			width:      100%;
+			background: rgba( 255, 255, 255, .8 )
+			url('http://i.stack.imgur.com/FhHRx.gif')
+			50% 50%
+			no-repeat;
+			}
+			/* When the body has the loading class, we turn
+			the scrollbar off with overflow:hidden */
+			body.loading .modal {
+			overflow: hidden;
+			}
+			/* Anytime the body has the loading class, our
+			modal element will be visible */
+			body.loading .modal {
+			display: block;
+			}
+		</style>
+		<!-- LOADING -->
 
 	</head>
 	<body>
+	
 		<!-- start: page -->
 		<section class="body-sign">
 			<div class="center-sign">
@@ -90,7 +119,7 @@
 							<div class="form-group mb-lg">
 								<div class="clearfix">
 									<label class="pull-left">Kata Sandi</label>
-									<a style="color:#0f994e;" href="reset_password.html" class="pull-right">Lupa Kata Sandi?</a>
+<!-- 									<a style="color:#0f994e;" href="reset_password.html" class="pull-right">Lupa Kata Sandi?</a> -->
 								</div>
 								<div class="input-group input-group-icon">
 									<input id="inputpassword" name="pwd" type="password" class="form-control input-lg" />
@@ -135,7 +164,7 @@
 		<!-- Theme Initialization Files -->
 		<script src="LIBRARYS/assets/javascripts/theme.init.js"></script>
 		
-		
+		<div id="modal" class="modal"><!-- Place at bottom of page --></div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         
@@ -150,6 +179,7 @@
 		        	alert('Username dan Password tidak boleh kosong');
 	        	} else {
 		        	
+		        	openModal();
 		        	var xhttp = new XMLHttpRequest();
 					xhttp.onreadystatechange = function() {
 						if (this.readyState == 4 && this.status == 200) {
@@ -161,6 +191,7 @@
 			
 							if( function_result == 0 ){
 								alert('Login gagal. pastikan username dan password Anda, benar.');
+								closeModal();
 							} else if( function_result == 1 ){
 								localStorage.clear();
 								localStorage.setItem("agronet_userid",customer_id);
@@ -170,6 +201,7 @@
 								localStorage.setItem("agronet_cart_qty",'');
 								
 								window.location="katalog.html";
+								closeModal();
 							}
 						}
 					};
@@ -180,8 +212,18 @@
 	        	}
 	        	
         	}
-        
+        	
         </script>
+		
+		<script>
+			function openModal(){
+			  document.getElementById("modal").style.display="block";
+			}
+
+			function closeModal(){
+			  document.getElementById("modal").style.display="none";
+			}
+		</script>
         
         
         
