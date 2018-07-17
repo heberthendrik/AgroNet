@@ -182,7 +182,7 @@
 									<li class="nav-parent">
 										<a href="tagihan.html">
 											<i class="fa fa-money" aria-hidden="true"></i>
-											<span>Tagihan</span>
+											<span>Tagihan dan Pembayaran</span>
 										</a>
 									</li>
 									<li class="nav-parent">
@@ -258,9 +258,7 @@
 					</header>
 	
 					<!-- CONTENT -->
-					<div class="panel-body" style="background:transparent;" id="display_content">	
-						Loading data notifikasi...
-					</div>
+					<div class="panel-body" style="background:transparent;" id="display_content"></div>
 
 					<!-- END CONTENT -->
 
@@ -389,6 +387,9 @@
 		
 						if( function_result == 1 ){
 							document.getElementById('display_content').innerHTML = display_content;		
+							closeModal();
+						} else if( function_result == 1 ){
+							document.getElementById('display_content').innerHTML = '';		
 							closeModal();
 						}
 						

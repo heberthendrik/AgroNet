@@ -182,7 +182,7 @@
 									<li class="nav-parent">
 										<a href="tagihan.html">
 											<i class="fa fa-money" aria-hidden="true"></i>
-											<span>Tagihan</span>
+											<span>Tagihan dan Pembayaran</span>
 										</a>
 									</li>
 									<li class="nav-parent">
@@ -397,8 +397,8 @@
 	        	openModal();
 	        	subjectx = document.getElementById('input_subject').value;
 	        	messagex = document.getElementById('input_pesan').value;
-	        	customer_id = document.getElementById('agronet_userid');
-	        	distributor_id = document.getElementById('agronet_distributorid');
+	        	customer_id = localStorage.getItem('agronet_userid');
+	        	distributor_id = localStorage.getItem('agronet_distributorid');
 	        	
 	        	if( subjectx == '' || subjectx == '' ){
 		        	alert('Subject dan pesan tidak boleh kosong.');
@@ -411,12 +411,23 @@
 							
 							var jsonData = JSON.parse(this.responseText);
 							function_result = jsonData.function_result;
-							querye = jsonData.query;
+							//querye = jsonData.query;
 			
 							//document.getElementById('load_listpesanan').innerHTML = display_content;	
 							//window.location='result_komplain.html';
-							alert(querye);
-							closeModal();
+							//alert(querye);
+							
+							if( function_result == 1 ){
+								alert('Komplain Anda berhasil terkirim. Mohon maaf atas ketidaknyamanannya. Kami akan menghubungi Anda segera untuk penanganan lebih lanjut.');
+								window.location='komplain.html';
+								closeModal();
+							} else {
+								alert('Terjadi masalah teknis. Silahkan hubungi administrator kami.');
+								window.location='komplain.html';
+								closeModal();
+							}
+							
+							
 							
 						}
 					};
