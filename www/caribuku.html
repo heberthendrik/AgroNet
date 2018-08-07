@@ -161,7 +161,7 @@
 											<span>Cari Buku</span>
 										</a>
 									</li>
-									<li class="nav-parent">
+									<li class="nav-active">
 										<a href="katalog.html">
 											<i class="fa fa-book" aria-hidden="true"></i>
 											<span>Katalog</span>
@@ -191,7 +191,7 @@
 											<span>Tagihan dan Pembayaran</span>
 										</a>
 									</li>
-									<li class="nav-active">
+									<li class="nav-parent">
 										<a href="promosi.html">
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<span>Promosi</span>
@@ -249,7 +249,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Promosi</h2>
+						<h2>Katalog</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -263,56 +263,75 @@
 						</div>
 					</header>
 	
-					<div id="display_content">
-						Loading data promosi...
+					<!-- CONTENT -->
+					<div class="container row">
+						<input id="inputkeyword" type="text" class="form-control" style="height:50px;margin-bottom:10px;" onkeypress="DisplayBookByKeyword();" placeholder="Masukan judul buku.." />
+					</div>
+					
+					<div id="display_book_by_keyword">
 						<!--
 						<div class="row">
-							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+							<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
 								<div style="border:1px solid #eee;margin-bottom:15px;">
 									<div>
-										<img src="media_library/promo1.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+										<img src="media_library/Amour-Vrai_cover-lowres.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
 									</div>
-									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
+									<div style="padding:10px;background:#fff;">Menjadi Pribadi Pembelajar</div>
+									<div class="text-right" style="background:#0f994e;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 74.800</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
+								<div style="border:1px solid #eee;margin-bottom:15px;">
+									<div>
+										<img src="media_library/Back-to-Love.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+									</div>
+									<div style="padding:10px;background:#fff;">Kenapa Kita Rela Tertinggal?</div>
+									<div class="text-right" style="background:#0f994e;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 54.800</div>
 								</div>
 							</div>
 						</div>
-						
 						<div class="row">
-							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+							<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
 								<div style="border:1px solid #eee;margin-bottom:15px;">
 									<div>
-										<img src="media_library/promo2.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+										<img src="media_library/finishing-cover-Pada-senja-depan.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
 									</div>
-									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
+									<div style="padding:10px;background:#fff;">Menjadi Pribadi Pembelajar</div>
+									<div class="text-right" style="background:#0f994e;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 74.800</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
+								<div style="border:1px solid #eee;margin-bottom:15px;">
+									<div>
+										<img src="media_library/Goals-Generation.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+									</div>
+									<div style="padding:10px;background:#fff;">Kenapa Kita Rela Tertinggal?</div>
+									<div class="text-right" style="background:#0f994e;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 54.800</div>
 								</div>
 							</div>
 						</div>
-						
 						<div class="row">
-							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+							<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
 								<div style="border:1px solid #eee;margin-bottom:15px;">
 									<div>
-										<img src="media_library/promo3.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
+										<img src="media_library/Kirana-Happy-Little-World-1.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
 									</div>
-									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
+									<div style="padding:10px;background:#fff;">Menjadi Pribadi Pembelajar</div>
+									<div class="text-right" style="background:#0f994e;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 74.800</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="row">
-							<div class="col-sm-12 col-xs-12" onclick="window.location='promosi_detail.html'" >
+							<div class="col-sm-6 col-xs-6" onclick="window.location='book_detail.html'" style="padding-right:0px;margin-left:-5px;" >
 								<div style="border:1px solid #eee;margin-bottom:15px;">
 									<div>
-										<img src="media_library/promo4.png" style="width:100%;height:auto;border-top-right-radius:15px;" />
+										<img src="media_library/mengalahkan-hati.jpg" style="width:100%;height:auto;border-top-right-radius:15px;" />
 									</div>
-									<div style="padding:15px;background:#fff;border-bottom-left-radius:15px;">Menjadi Pribadi Pembelajar</div>
+									<div style="padding:10px;background:#fff;">Kenapa Kita Rela Tertinggal?</div>
+									<div class="text-right" style="background:#0f994e;padding-left:10px;padding-right:10px;color:#fff;padding-top:5px;padding-bottom:5px;border-bottom-left-radius:15px;">IDR 54.800</div>
 								</div>
 							</div>
 						</div>
 						-->
 					</div>
-					
-					
 					
 					<!-- END CONTENT -->
 
@@ -321,6 +340,8 @@
 
 			
 		</section>
+		<div id="modal" class="modal"><!-- Place at bottom of page --></div>        
+		
 
 		<!-- Vendor -->
 		<script src="LIBRARYS/assets/vendor/jquery/jquery.js"></script>
@@ -370,7 +391,6 @@
 		<!-- Examples -->
 		<script src="LIBRARYS/assets/javascripts/dashboard/examples.dashboard.js"></script>
 		
-		<div id="modal" class="modal"><!-- Place at bottom of page --></div>
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         
@@ -424,30 +444,44 @@
 	        	
         	}
         
-        	openModal();
-        	DisplayAllPromo();
-        	function DisplayAllPromo(){
+			openModal();        	
+        	function DisplayBookByKeyword(){
+
+	        	var inputkeyword = document.getElementById('inputkeyword').value;
+	        	
+	        	var distributor_id = localStorage.getItem('agronet_distributorid');
 	        	
 	        	var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						
 						var jsonData = JSON.parse(this.responseText);
-						display_content = jsonData.display_content;
-						
-						document.getElementById('display_content').innerHTML = display_content;
-						closeModal();
+						var function_result = jsonData.function_result;
+						var customer_id = jsonData.customer_id;
+						var distributor_id = jsonData.distributor_id;
+		
+						if( function_result == 0 ){
+							alert('Data buku dengan keyword "'+inputkeyword+'" tidak ditemukan. Silahkan masukan keyword lainnya.');
+							closeModal();
+						} else if( function_result == 1 ){
+							
+							var display_content = jsonData.display_content;
+							
+							document.getElementById('display_book_by_keyword').innerHTML = display_content;
+							closeModal();
+							
+						}
 					}
 				};
-				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/promo/MobileAPI.php?action=DisplayAllPromo", true);
+				xhttp.open("POST", "http://175.103.58.5/agro-crm/Admin/mobile/book/MobileAPI.php?action=DisplayHomepageBookByKeyword", true);
 				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				xhttp.send("");
-		        
+				xhttp.send("keyword="+inputkeyword+"&distributor_id="+distributor_id);
+
         	}
         	
-        	function RedirectToPromoDetail(promoid){
+        	function RedirectURLToBookDetail(isbn){
 	        	
-	        	window.location='promosi_detail.html?pid='+promoid;
+	        	window.location='book_detail.html?isbn='+isbn;
 	        	
         	}
         	
@@ -461,7 +495,6 @@
         
         </script>
         
-        
-        
+		
 	</body>
 </html>
